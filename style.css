@@ -1,0 +1,845 @@
+
+/* body h3,p,li,ul,a{
+font-family: 'Manrope', sans-serif;
+font-family: 'Dancing Script', cursive;
+font-family: 'Baloo Bhai 2', cursive;
+} */
+.icon-bar {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 12;
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white !important;
+  font-size: 20px;
+ 
+}
+
+.icon-bar a:hover {
+  background-color:gray;
+  opacity: 0.5;
+}
+
+.facebook {
+  background: #3B5998;
+  
+}
+
+.twitter {
+  background: #55ACEE;
+ 
+}
+
+.google {
+  background:  #9e6e3d;
+
+}
+
+.linkedin {
+  background: #007bb5;
+  
+}
+
+.youtube {
+  background: #bb0000;
+
+}
+
+
+h2 {
+  font-size: 150px;
+  font-weight: bolder;
+  color: white;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap");
+
+/* Navbar section */
+.toggle,
+[id^="drop"] {
+  display: none;
+}
+
+/* Giving a background-color to the nav container. */
+nav {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  text-decoration: none;
+}
+
+#logo {
+  display: block;
+  padding: 0 30px;
+  float: left;
+  font-size: 20px;
+  line-height: 60px;
+}
+
+/* Since we'll have the "ul li" "float:left"
+ * we need to add a clear after the container. */
+
+nav:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Removing padding, margin and "list-style" from the "ul",
+ * and adding "position:reltive" */
+nav ul {
+  float: right;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+}
+
+/* Positioning the navigation items inline */
+nav ul li {
+  margin: 0px;
+  display: inline-block;
+ 
+  background-color: black;
+}
+
+/* Styling the links */
+nav a {
+  display: block;
+  padding: 14px 20px;
+  color: #fff;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+nav ul li ul li:hover {
+  background: black;
+}
+
+/* Background color change on Hover */
+nav a:hover {
+  background-color: #254441;
+}
+
+/* Hide Dropdowns by Default
+ * and giving it a position of absolute */
+nav ul ul {
+  display: none;
+  position: absolute;
+  /* has to be the same number as the "line-height" of "nav a" */
+  top: 60px;
+}
+
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+  display: inherit;
+}
+
+/* Media Queries
+--------------------------------------------- */
+
+@media all and (max-width: 768px) {
+  #logo {
+    display: block;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    float: none;
+  }
+
+  nav {
+    margin: 0;
+  }
+
+  /* Hide the navigation menu by default */
+  /* Also hide the  */
+  .toggle + a,
+  .menu {
+    display: none;
+  }
+
+  /* Stylinf the toggle lable */
+  .toggle {
+    display: block;
+    background-color: black;
+    padding: 14px 20px;
+    color: #fff;
+    font-size: 17px;
+    text-decoration: none;
+    border: none;
+  }
+
+  .toggle:hover {
+    background-color: #254441;
+  }
+
+  /* Display Dropdown when clicked on Parent Lable */
+  [id^="drop"]:checked + ul {
+    display: block;
+  }
+
+  /* Change menu item's width to 100% */
+  nav ul li {
+    display: block;
+    width: 100%;
+  }
+
+  nav ul ul .toggle,
+  nav ul ul a {
+    padding: 0 40px;
+  }
+
+  nav ul ul ul a {
+    padding: 0 80px;
+  }
+
+  nav a:hover,
+  nav ul ul ul a {
+    background-color: #000000;
+  }
+
+  nav ul li ul li .toggle,
+  nav ul ul a,
+  nav ul ul ul a {
+    padding: 14px 20px;
+    color: #fff;
+    font-size: 17px;
+  }
+
+  nav ul li ul li .toggle,
+  nav ul ul a {
+    background-color: #212121;
+  }
+
+  /* Hide Dropdowns by Default */
+  nav ul ul {
+    float: none;
+    position: static;
+    color: #ffffff;
+    /* has to be the same number as the "line-height" of "nav a" */
+  }
+
+  /* Hide menus on hover */
+  nav ul ul li:hover > ul,
+  nav ul li:hover > ul {
+    display: none;
+  }
+
+  /* Fisrt Tier Dropdown */
+  nav ul ul li {
+    display: block;
+    width: 100%;
+  }
+
+  nav ul ul ul li {
+    position: static;
+    /* has to be the same number as the "width" of "nav ul ul li" */
+  }
+}
+
+@media all and (max-width: 330px) {
+  nav ul li {
+    display: block;
+    width: 94%;
+  }
+}
+/*carousel*/
+
+#carousel .carousel-item.boat {
+  background-image: url("https://picsum.photos/1200/600/?image=1083");
+}
+
+#carousel .carousel-item.sea {
+  background-image: url("https://picsum.photos/1200/600/?image=1050");
+}
+
+#carousel .carousel-item.river {
+  background-image: url("https://picsum.photos/1200/600/?image=1015");
+}
+
+#carousel .carousel-item {
+  height: 100vh;
+  width: 100%;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  background-size: cover;
+}
+
+#carousel .carousel-inner .carousel-item {
+  transition: -webkit-transform 2s ease;
+  transition: transform 2s ease;
+  transition: transform 2s ease, -webkit-transform 2s ease;
+}
+
+#carousel .carousel-item .caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  color: white;
+  animation-duration: 1s;
+  animation-delay: 2s;
+}
+
+#carousel .caption h2 {
+  animation-duration: 1s;
+  animation-delay: 2s;
+}
+
+#carousel .caption p {
+  animation-duration: 1s;
+  animation-delay: 2.2s;
+}
+
+#carousel .caption a {
+  animation-duration: 1s;
+  animation-delay: 2.4s;
+}
+
+/* Button */
+.delicious-btn {
+  display: inline-block;
+  min-width: 160px;
+  height: 60px;
+  color: #ffffff !important ;
+  border: none;
+  border-left: 3px solid #1c8314;
+  border-radius: 0;
+  padding: 0 30px;
+  font-size: 16px;
+  line-height: 58px;
+  font-weight: 600;
+  text-decoration: none !important;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  text-transform: capitalize;
+  background-color: #40ba37;
+}
+
+.delicious-btn.active,
+.delicious-btn:hover,
+.delicious-btn:focus {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #1c8314;
+  border-color: #40ba37;
+}
+
+.btn3 {
+  background-color: white;
+  color: #4caf50;
+  border: 4px solid #4caf50;
+  transition: border 0.7s ease-out, text-transform 1s, border-radius 1s ease-out;
+  cursor: pointer;
+  border-radius: 0px;
+  box-shadow: 10px 10px rgba(77, 77, 77, 0.5);
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: -0.09em;
+  line-height: 25px;
+  padding: 0 20px;
+  margin: 10px;
+}
+
+.btn3:hover {
+  border: 8px solid #4caf50;
+  text-transform: uppercase;
+  border-radius: 30px;
+  text-decoration: underline;
+}
+
+.btn3:active {
+  background-color: #4caf50;
+  color: white;
+  transform: translate3d(3px, 3px, 0px);
+  box-shadow: 7px 7px rgba(77, 77, 77, 0.5);
+}
+/* about me*/
+.about {
+  padding: 150px;
+}
+
+.d-flex {
+  font-size: 18px;
+  font-weight: bolder;
+}
+.card-title {
+  text-align: center;
+  padding: 10px;
+}
+.word-space {
+  text-align: center;
+  padding-left: 120px;
+}
+.word-space1 {
+  text-align: center;
+  padding-left: 100px;
+}
+.word-space2 {
+  text-align: center;
+  padding-left: 75px;
+}
+.word-space3 {
+  text-align: center;
+  padding-left: 105px;
+}
+.about img {
+  position: relative;
+  width: 250px;
+  height: 450px;
+}
+.no {
+  position: relative;
+  font-size: 30px;
+  font-weight: bolder;
+  color: brown;
+}
+h1,
+h2,
+h3,
+h4,
+p,
+li {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.resume .title {
+  text-align: center;
+}
+
+span {
+  font-size: 15px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+.box {
+  padding: 60px 0px;
+}
+
+.box-part {
+  background: darkgray;
+  border-radius: 10px;
+  padding: 60px 10px;
+  margin: 30px 0px;
+}
+.text {
+  margin: 20px 0px;
+
+  color: white;
+}
+
+
+.title h4 {
+  color: yellow;
+}
+.resume .btn3 {
+  margin-left: 250px;
+  padding: 10px;
+  display: inline-flexbox;
+  text-align: center;
+  position: relative;
+}
+/*service*/
+.service .title {
+  text-align: center;
+  padding: 30px;
+}
+.wrimagecard {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  position: relative;
+  background: #fff;
+  box-shadow: 12px 15px 20px 0px rgba(29, 106, 170, 0.5);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.wrimagecard .fa {
+  position: relative;
+  font-size: 70px;
+}
+.wrimagecard-topimage_header {
+  padding: 20px;
+}
+a.wrimagecard:hover,
+.wrimagecard-topimage:hover {
+  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 2);
+}
+.wrimagecard-topimage a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.wrimagecard-topimage_title {
+  padding: 20px 24px;
+  height: 80px;
+  padding-bottom: 0.75rem;
+  position: relative;
+}
+.wrimagecard-topimage a {
+  border-bottom: none;
+  text-decoration: none;
+  color: #525c65;
+  transition: color 0.3s ease;
+}
+
+/*skill*/
+
+.ski .title {
+  text-align: center;
+  padding: 40px;
+}
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
+.skill1 {
+  position: relative;
+display: flex-box;
+
+    left: 100px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.skill1 .card2 {
+  position: relative;
+  width: 300px;
+  background: linear-gradient(0deg, #1b1b1b, #222, #1b1b1b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  border-radius: 4px;
+  text-align: center;
+  overflow: hidden;
+  transition: 0.5s;
+  margin: 10px;
+}
+
+.skill1 .card2:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.skill1 .card2:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.percent {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 50px #000;
+  background: #222;
+  z-index: 1000;
+}
+
+.percent .number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.percent .number h2 {
+  color: #777;
+  font-weight: 700;
+  font-size: 40px;
+  transition: 0.5s;
+}
+
+.card2:hover .percent .number h2 {
+  color: #fff;
+  font-size: 60px;
+}
+
+.percent .number h2 span {
+  font-size: 24px;
+  color: #777;
+}
+
+.card2:hover .percent .number h2 span {
+  color: #fff;
+}
+
+.text {
+  position: relative;
+  color: #777;
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.card2:hover .text {
+  color: #fff;
+}
+
+svg {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  z-index: 1000;
+}
+
+svg circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #191919;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+}
+
+svg circle:nth-child(2) {
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+}
+
+.card2:nth-child(1) svg circle:nth-child(2) {
+  stroke-dashoffset: calc(440 - (440 * 85) / 100);
+  stroke: #fff200;
+}
+
+.card2:nth-child(2) svg circle:nth-child(2) {
+  stroke-dashoffset: calc(440 - (440 * 100) / 100);
+  stroke: green;
+}
+
+.card2:nth-child(3) svg circle:nth-child(2) {
+  stroke-dashoffset: calc(440 - (440 * 50) / 100);
+  stroke: #000dff;
+}
+
+#section-counter .text {
+  background-color: darkslategray;
+  border-radius: 3px;
+  width: 160px;
+  height: 120px;
+  color: white;
+  position: relative;
+  top: 50px;
+  text-align: center;
+}
+#section-counter .img {
+  width: 100%;
+  height: 400px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* modal**/
+.popup {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: rgba(#000, 0.75);
+  text-align: center;
+  z-index: 999;
+  overflow: hidden;
+  overflow-y: auto;
+}
+ .button{
+margin-right:500px;
+color: white;
+}
+  .popup:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    margin-right: -4px;
+    vertical-align: middle;
+  }
+
+  .popup-inner {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    position: relative;
+    max-width: 700px;
+    width: 90%;
+    padding: 40px;
+    box-shadow: 0px 2px 6px #000;
+    border-radius: 3px;
+    background: #fff;
+    text-align: center;
+
+  }
+
+    
+
+  .popup-close {
+    width: 34px;
+    height: 34px;
+    padding-top: 4px;
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    -webkit-transform: translate(50%, -50%);
+    transform: translate(50%, -50%);
+    border-radius: 100%;
+    background: transparent;
+    border: solid 4px #808080;
+  }
+   .popup-inner:after,
+   .popup-inner:before {
+      content: "";
+      position: absolute;
+      top: 11px;
+      left: 5px;
+      height: 4px;
+      width: 16px;
+      border-radius: 30px;
+      background: #808080;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    .btn:after {
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+
+    .popupNew:hover {
+      -webkit-transform: translate(50%, -50%) rotate(180deg);
+      transform: translate(50%, -50%) rotate(180deg);
+      background: #f00;
+      text-decoration: none;
+      border-color: #f00;
+    }
+      .popup:after,
+      .popup:before {
+        background: #fff;
+      }
+   
+
+/*footer*/
+.ftco-footer {
+  color: white;
+}
+/*animation**/
+.animatable {
+  
+  /* initially hide animatable objects */
+  visibility: hidden;
+  
+  /* initially pause animatable objects their animations */
+  -webkit-animation-play-state: paused;   
+  -moz-animation-play-state: paused;     
+  -ms-animation-play-state: paused;
+  -o-animation-play-state: paused;   
+  animation-play-state: paused; 
+}
+
+/* show objects being animated */
+.animated {
+  visibility: visible;
+  
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -ms-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+  
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -ms-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+
+  -webkit-animation-play-state: running;
+  -moz-animation-play-state: running;
+  -ms-animation-play-state: running;
+  -o-animation-play-state: running;
+  animation-play-state: running;
+}
+@-webkit-keyframes moveUp {
+	0% {
+		opacity: .5;
+		-webkit-transform: translateY(40px);
+	}	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+	}
+}
+
+
+
+
+
+@keyframes moveUp {
+	0% {
+		opacity: .5;
+		transform: translateY(40px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+.animated.moveUp {
+	-webkit-animation-name: moveUp;
+	-moz-animation-name: moveUp;
+	-o-animation-name: moveUp;
+	animation-name: moveUp;
+}
+
+
+
+.animated.bounceIn {
+	-webkit-animation-name: bounceIn;
+	-moz-animation-name: bounceIn;
+	-o-animation-name: bounceIn;
+	animation-name: bounceIn;
+}
+@keyframes bounceIn {
+	0% {
+		opacity: 0;
+		transform: scale(.3);
+	}
+
+	50% {
+		transform: scale(1.10);
+	}
+
+	70% {
+		transform: scale(.8);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
