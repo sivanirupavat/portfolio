@@ -5,532 +5,270 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
-        rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@600&family=Dancing+Script:wght@600&family=Girassol&family=Manrope:wght@600&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
-    <style>
-        f h1 {
-            text-align: left;
-            font-size: 100px;
-            font-weight: bolder;
-            color: white;
+    <title>MyBlog Home</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.min.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-diagoona.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/jquery-3.4.1.min.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/bootstrap.min.js')}}"></script>
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='javascript/jquery.backstretch.min.js')}}"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            const autoplayBg = true; // set Auto Play for Background Images
+            initBg(autoplayBg);
+            setBgOverlay();
+
+            const bgControl = $('.tm-bg-control');
+            bgControl.click(function () {
+                bgControl.removeClass('active');
+                $(this).addClass('active');
+                const id = $(this).data('id');
+                setBg(id);
+            });
+
+            $(window).on("backstretch.after", function (e, instance, index) {
+                const bgControl = $('.tm-bg-control');
+                bgControl.removeClass('active');
+                const current = $(".tm-bg-controls-wrapper").find(`[data-id=${index}]`);
+                current.addClass('active');
+            });
+
+            $(window).resize(function () {
+                setBgOverlay();
+            });
+        });
+        initBg = (autoplay = true) => {
+            const bgImgsNames = ["{{url_for('static', filename='images/one.jpg')}}", "{{url_for('static', filename='images/two.jpg')}}", "{{ url_for('static', filename='images/three.jpg')}}"];
+            const bgImgs = bgImgsNames.map(images => images);
+
+            $.backstretch(bgImgs, {
+                duration: 4000,
+                fade: 500
+            });
+
+            if (!autoplay) {
+                $.backstretch('pause');
+            }
         }
-    </style>
+
+        const setBg = id => {
+            $.backstretch('show', id);
+        }
+
+        const setBgOverlay = () => {
+            const windowWidth = window.innerWidth;
+            const bgHeight = $('body').height();
+            const tmBgLeft = $('.tm-bg-left');
+
+            $('.tm-bg').height(bgHeight);
+
+            if (windowWidth > 768) {
+                tmBgLeft.css('border-left', `0`)
+                    .css('border-top', `${bgHeight}px solid transparent`);
+            } else {
+                tmBgLeft.css('border-left', `${windowWidth}px solid transparent`)
+                    .css('border-top', `0`);
+            }
+        }
+    </script>
 </head>
 
-<body style="background-color: black">
-    <div class="icon-bar hidden-xs">
-        <a href="https://github.com/harilee1325" class="facebook"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/harikrishnan-code/" class="linkedin"><i class="fab fa-linkedin"></i></a>
-    </div>
-    <nav class="fixed-top" style="color: white; font-size: 50px; font-weight: bold">
-        <div id="logo">Android Developer</div>
+<body>
 
-        <label for="drop" class="toggle"> <i class="fa fa-bars fa-2x"></i></label>
-        <input type="checkbox" id="drop" />
-        <ul class="menu">
-            <li><a style="color: white; font-size: 25px; font-weight: bold" href="home.html" class="cool-link">Home</a>
-            </li>
-            <li><a style="color: white; font-size: 25px; font-weight: bold" href="#about-section"
-                    class="cool-link">About</a></li>
-            <li><a style="color: white; font-size: 25px; font-weight: bold" href="#resume" class="cool-link">Resume</a>
-            </li>
-            <li><a style="color: white; font-size: 25px; font-weight: bold" href="#service"
-                    class="cool-link">Service</a></li>
-            <li><a style="color: white; font-size: 25px; font-weight: bold" href="#skill" class="cool-link">Skill</a>
-            </li>
-            <li><a style="color: white; font-size: 25px; font-weight: bold" href="#projects-section"
-                    class="cool-link">Project</a></li>
-            <li><a style="color: white; font-size: 25px; font-weight: bold" href="#contact-section"
-                    class="cool-link">Contact</a></li>
-        </ul>
-    </nav>
+    <script>
+        sessionStorage.setItem("BASE_URL_TEST", "http://127.0.0.1:5000/");
+        sessionStorage.setItem("BASE_URL", "https://hariblog.herokuapp.com/");
+        var articleArray;
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: sessionStorage.getItem("BASE_URL_TEST") + "get-articles",
+            success: function (data) {
+                articleArray = data['data'];
+                console.log(data['result']);
+                var flag = true;
+                var output = document.getElementById("article_card");
+                output.innerHTML = `
+                <h1 style="margin-top:10%" ;class="mb-4 tm-content-title">Top Article</h1>
+                ${articleArray.map(function (article) {
+                    console.log(article['title'])
+                    if (flag) {
+                        flag = false;
+                        return `
+                    <section class="tm-content">
+                    <img src="${article.image}" alt="Image" width=150 height=auto
+                    class="tm-service-img">
+                    <div class="media-body tm-service-text">
+                        <h2 class="mb-4 tm-content-title">${article['title']}</h2>
+                        <p style="font-weight:400;">${article.description}</p>
+                        <a href="{{ url_for('read_article')}}" 
+                        style="margin-left:-6%";
+                        onclick="${storeIdInSession(article['id'])}"
+                        class="btn btn-link">Read more...</a>
 
-    <section>
-        <div class="container-fluid">
-            <div id="carousel" class="carousel slide hero-slides" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li class="active" data-target="#carousel" data-slide-to="0"></li>
-                    <li data-target="#carousel" data-slide-to="1"></li>
-                    <li data-target="#carousel" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active boat">
-                        <div class="container h-100 d-none d-md-block">
-                            <div class="row align-items-center h-100">
-                                <div class="caption animated fadeIn">
-                                    <h2 class="animated fadeInLeft" style="font-size: 100px;color:white;">
-                                        <span style="color: yellow;font-size: 100px;"> I'm </span> Harikrishnan</h2>
-                                    <p class="animated fadeInRight" style="font-size: 25px;color:white;">I'm a mobile
-                                        app developer</p>
-
-                                    <!-- <button class="btn btn-success" style="font-size: 30px">
-                                        <a href="#contact-section" style="color: white">contact me</a></button> -->
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="carousel-item sea">
-                        <div class="container h-100 d-none d-md-block">
-                            <div class="row align-items-center h-100">
-                                <div class="caption animated fadeIn">
-                                    <h2 class="animated fadeInLeft" style="font-size:100px;color:white;">I'm an
-                                        <span style="color: yellow;font-size: 100px;"> Android
-                                            Developer</span>
-                                    </h2>
-                                    <p class="animated fadeInRight" style="font-size: 25px;color:white;">based in
-                                        Kerala
-                                    </p>
-                                    <!-- <button class="btn btn-success" style="font-size: 30px">
-                                        <a href="#contact-section" style="color: white">contact me</a></button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-        </div>
-    </section>
-    <!--about me-->
-    <section class="ftco-about img ftco-section ftco-no-pb animatable bounceIn id=" about-section">
-        <div class="container">
-            <div class="row d-flex">
-                <div class="col-md-6 col-lg-5 d-flex">
-                    <div class="img-about img d-flex align-items-stretch">
-                        <div class="overlay"></div>
-                        <div class="img d-flex align-self-stretch align-items-center hidden-xs">
-                            <img src="hari.jpg">
+                    <section>
+                    `}
+
+                }).join('')}
+
+                `
+            }
+
+        })
+        function arrayRotate(arr, reverse) {
+            if (reverse) arr.unshift(arr.pop());
+            else arr.push(arr.shift());
+            return arr;
+        }
+        function storeIdInSession(article_id) {
+            if (typeof (Storage) != undefined) {
+                sessionStorage.setItem("ARTICLE_ID", article_id);
+
+            }
+        }
+    </script>
+    <script>
+        function checkAdmin() {
+            var person = prompt("Please enter password");
+            if (person != null) {
+                if (person == "harilee1329") {
+                    window.open("{{url_for('upload_article')}}")
+                } else {
+                    window.alert("Password wrong.")
+                }
+            }
+        }
+    </script>
+    <div class="tm-container">
+        <div>
+            <div class="tm-row pt-4">
+                <div class="tm-col-left">
+                    <div class="tm-site-header media">
+                        <i class="fa fa-commenting fa-3x mt-1 tm-logo"></i>
+                        <div class="media-body">
+                            <h1 class="tm-sitename text-uppercase">MyBlog</h1>
+                            <p class="tm-slogon">Why not learn?</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-                    <div class="row justify-content-start pb-3">
-                        <div class="col-md-12 heading-section ftco-animate">
-                            <h1 style="text-align:left;
-                                font-size:100px;
-                                font-weight: bolder;
-                                color:white;
-                                ">About</h1>
-
-                            <p style="font-size: 25px;
-                            color:white;">Innovative tech mind with 2 years of experience working as a computer
-                                programmer. Extensive expertise in the field of android development and working with
-                                flash framework. </p>
-                            <ul class="about-info mt-4 px-md-0 px-2">
-                                <li class="d-flex"><span style="text-align:left;
-                                font-size:20px;
-                                margin-top: 15px;   
-                                font-weight: bolder;
-                                color:white;">Name </span> <span class="word-space" style="text-align:left;
-                                font-size:20px;
-                                margin-top: 15px;   
-                                font-weight: bolder;
-                                margin-left: 18px;">Harikrishnan</span>
+                <div class="tm-col-right">
+                    <nav class="navbar navbar-expand-lg" id="tm-main-nav">
+                        <button class="navbar-toggler toggler-example mr-0 ml-auto" type="button" data-toggle="collapse"
+                            data-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span><i class="fas fa-bars"></i></span>
+                        </button>
+                        <div class="collapse navbar-collapse tm-nav" id="navbar-nav">
+                            <ul class="navbar-nav text-uppercase">
+                                <li class="nav-item active">
+                                    <a class="nav-link tm-nav-link" href="{{url_for('home')}}">Home <span
+                                            class="sr-only">(current)</span></a>
                                 </li>
-                                <li class="d-flex"><span style="text-align:left;
-                                    font-size:20px;
-                                    font-weight: bolder;
-                                    margin-top: 15px;   
-                                    color:white;">Date of birth</span> <span class="word-space2" style="text-align:left;
-                                     font-size:20px;
-                                    margin-top: 15px;">Feb 14,1999</span></li>
-                                <li class="d-flex"><span style="text-align:left;
-                                    font-size:20px;
-                                    font-weight: bolder;
-                                    margin-top: 15px;   
-                                    color:white;">Email </span> <span class="word-space" style="text-align:left;
-                                     font-size:20px;
-                                    margin-left: 55x; 
-                                    margin-top: 15px;
-                                    color:blanchedalmond
-                                    ">leehari007@gmail.com</a></span>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="{{ url_for('about') }}">About</a>
                                 </li>
-                                <li class="d-flex"><span style="text-align:left;
-                                    font-size:20px;
-                                    font-weight: bolder;
-                                    margin-top: 15px;   
-                                    color:white;">Phone </span> <span style="text-align:left;
-                                    font-size:20px;
-                                   margin-left: 55x; 
-                                   margin-top: 15px;" class="word-space">+91 8075 687141</span>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="{{ url_for('contact') }}">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link tm-nav-link" href="{{ url_for('see_all') }}">See All</a>
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="counter-wrap ftco-animate d-flex mt-md-3">
-                        <button class="btn btn-success" style="font-size: 30px">
-                            <a href="new_resume.pdf" style="color: white">see resume</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </section>
-    <!--resume-->
-    <section class="resume" id="resume">
-        <div class="container">
-            <h1 style="
-                text-align: left;
-                font-size: 100px;
-                font-weight: bolder;
-                color: white;" class=" amimatable moveUp">Resume</h1>
-            <p style=" font-size: 25px; color:white;">To express what one knows or to impart
-                knowledge is to empower others and guide them in the right direction. I started writing when I started
-                learning important things and when
-                I wanted to share that knowledge with the community that taught me the same.</p>
-            <div class="box  animatable bounceIn">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
-                            <div class="box1-part text-start">
-                                <img src="classx.png" style="border-radius: 40px;">
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12  animatable bounceIn">
-                            <div class="box1-part text-start">
-                                <img src="class12.png" style="border-radius: 40px;">
-                            </div>
-                            <!-- <div class="box1-part text-start" style="margin-top: 10px; margin-bottom: 20px;">
-
-                                    <h2 style="color: yellow; ">2016-2017</h2>
-                                    <h3 style="color: black; ">XII CBSE</h3>
-                                    <span style="color: black; font-size:20px; font-weight:bold;">Completed 12th from
-                                        Arya Central School with 89.4% in science stream (Computer Science)</span>
-                                </div> -->
-                        </div>
-
-                    </div>
-                    <div class="row" style="margin-top: 20px;">
-
-                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12  animatable bounceIn">
-                            <div class=" box1-part text-start">
-                                <img src="bca.png" style="border-radius: 40px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        </div>
-    </section>
-    <!--service-->
-    <section class="service " id="service">
-        <div class="container">
-            <h1 style="text-align: left;
-                        font-size: 100px;
-                        font-weight: bolder;
-                         color: white;" class=" amimatable moveUp">Services</h1>
-            <p style=" font-size: 25px; color:white;">
-            </p>
-            <div class="box">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12 animatable bounceIn">
-                            <div class="box1-part text-start">
-                                <img src="app_dev.png">
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12 animatable bounceIn">
-                            <div class="box1-part text-start">
-
-                                <img src="article.png">
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        </div>
-        </div>
-
-    </section>
-    <!--skill-->
-    <section class="ski  " id="skill">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 heading-section text-center ftco-animate  amimatable moveUp">
-                    <h1 style="
-                    text-align: left;
-                    font-size: 100px;
-                    font-weight: bolder;
-                    color: white;">Skills</h1>
-                    <div class="skill1">
-                        <div class="card2 col-md-4 col-sm-12 animatable bounceIn" style="align-self: center;  ">
-                            <div class="box1 ">
-                                <div class="percent">
-                                    <svg>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                    </svg>
-                                    <div class="number">
-                                        <h2>85<span>%</span></h2>
-                                    </div>
-                                </div>
-                                <h2 class="text">JAVA</h2>
-                            </div>
-                        </div>
-                        <div class="card2 col-md-4 col-sm-12 animatable bounceIn" style="align-self: center; ">
-                            <div class="box1 ">
-                                <div class="percent">
-                                    <svg>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                    </svg>
-                                    <div class="number">
-                                        <h2>100<span>%</span></h2>
-                                    </div>
-                                </div>
-                                <h2 class="text">Android dev</h2>
-                            </div>
-                        </div>
-                        <div class="card2 col-md-4 col-sm-8 animatable bounceIn " style="align-self: center;  ">
-                            <div class="box1 ">
-                                <div class="percent">
-                                    <svg>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                    </svg>
-                                    <div class="number">
-                                        <h2> 50<span>%</span></h2>
-                                    </div>
-                                </div>
-                                <h2 class="text">Web dev</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill1">
-                        <div class="card2 col-md-4 col-sm-8 animatable bounceIn" style="align-self: center;  ">
-                            <div class="box1">
-                                <div class="percent">
-                                    <svg>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                    </svg>
-                                    <div class="number">
-                                        <h2>80<span>%</span></h2>
-                                    </div>
-                                </div>
-                                <h2 class="text">Xml</h2>
-                            </div>
-                        </div>
-                        <div class="card2 col-md-4 col-sm-12 animatable bounceIn" style="align-self: center; ">
-                            <div class="box1">
-                                <div class="percent">
-                                    <svg>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                    </svg>
-                                    <div class="number">
-                                        <h2>100<span>%</span></h2>
-                                    </div>
-                                </div>
-                                <h2 class="text">Flask</h2>
-                            </div>
-                        </div>
-                        <div class="card2 col-md-4 col-sm-12 animatable bounceIn" style="align-self: center; ">
-                            <div class="box1">
-                                <div class="percent">
-                                    <svg>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                        <circle cx="70" cy="70" r="70"></circle>
-                                    </svg>
-                                    <div class="number">
-                                        <h2>50<span>%</span></h2>
-                                    </div>
-                                </div>
-                                <h2 class="text">Python</h2>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--project-->
-    <section class="ftco-section ftco-project" id="projects-section">
-        <div class="container">
-            <div class="row justify-content-center pb-5">
-                <div class="col-md-12 heading-section text-center amimatable moveUp ">
-                    <h1 style="
-                    text-align: left;
-                    font-size: 100px;
-                    font-weight: bolder;
-                    color: white;">Projects</h1>
-                </div>
-            </div>
-            <div class="box ">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12 animatable bounceIn">
-                            <div class="box1-part text-start">
-                                <a href="https://github.com/krnsree/TechUtsav2k20"> <img src="techutsav.png"></a>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12 animatable bounceIn">
-                            <div class="box1-part text-start">
-                                <a href="https://github.com/harilee1325/MovieMan"><img src="movieman.png"></a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row" style="margin-top: 10px">
-                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12 animatable bounceIn">
-                            <div class="box1-part text-start">
-                                <a href="https://github.com/harilee1325/BSafe"> <img src="bsafe.png"></a>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12 animatable bounceIn">
-                            <div class="box1-part text-start">
-                                <a href="https://github.com/harilee1325/location_tracker"> <img src="location.png"></a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row" style="margin-top: 10px ">
-                        <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12 animatable bounceIn">
-                            <div class="box1-part text-start">
-                                <a href="https://github.com/harilee1325"> <img src="final.png"></a>
-                            </div>
-
-                        </div>
-
-                    </div>
-
+                    </nav>
                 </div>
             </div>
 
+            <div class="tm-row">
+                <div class="tm-col-left" id="article_card">
+                    <!-- <h1 style="margin-top:10%" ;class="mb-4 tm-content-title">Top Articles</h1> -->
+                    <!-- <section class="tm-content">
+                        <div class="media my-3 mb-5 tm-service-media tm-service-media-img-l" >
+                             <img src="{{ url_for('static', filename='images/services-1.jpg')}}" alt="Image"
+                                class="tm-service-img" id="article_image">
+                            <div class="media-body tm-service-text">
+                                <h2 class="mb-4 tm-content-title" id="article_title">Best Services for you</h2>
+                                <p id="article_desc">Our template is simple and effective. This is an alternating simple
+                                    content with a
+                                    squared size image. Menu hover is #9CC and text #FFF</p>
+                            </div> 
+                        </div>
+                    </section>  -->
+                </div>
+                <main class="tm-col-right">
+                    <section class="tm-content">
+                        <h2 class="mb-5 tm-content-title">Read interesting!</h2>
+                        <p class="mb-5">Read about interesting things from around the world and get to know about
+                            history and much more.</p>
+                        <hr class="mb-5">
+                        <p class="mb-5">Here in MyBlog we take suggestions from our viewers and write contents based on
+                            those topics. We do research on any given topic and make it interesting for you to read..
+                        </p>
+                        <a onclick="checkAdmin()" class="btn btn-success">Upload
+                            article..</a>
+                    </section>
+
+                </main>
+            </div>
         </div>
-    </section>
-    <!--counter-->
-    <section class="ftco-section ftco-hireme img margin-top animatable bounceIn" id="contact-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-7 ftco-animate text-center">
-                    <h1 style="
-                        text-align: left;
-                        font-size: 100px;
-                        font-weight: bolder;
-                        color: white;">I'm Available for freelancing</h1>
-                    <p style=" font-size: 25px; color:white;">Ready to take up any opportunity to develop applications
-                        based on client requirement.</p>
-                    <!-- Button trigger modal -->
-                        <form id="contact-form" action="" method="POST">
-                            <div class="form-group mb-4">
-                                <input style="height: 30px;" type="text" name="name" id="name"
-                                    class="form-control" placeholder="Name" required="" />
-                            </div>
-                            <div class="form-group mb-4">
-                                <input style="height: 30px" type="email" name="email" id="email"
-                                    class="form-control" placeholder="Email" required="" />
-                            </div>
-                            <div class="form-group mb-5">
-                                <textarea rows="6" name="message" id="message" class="form-control"
-                                    placeholder="Message..." required=""></textarea>
-                            </div>
-                            <div class="text-right">
-                            
-                                <script>
 
-                                    function sendMail() {
-
-                                        var name = document.getElementById("name").value;
-                                        var message = document.getElementById("message").value;
-                                        var email = document.getElementById("email").value;
-                                        window.open("mailto:leehari007@gmail.com?subject=" + name + " suggestion " + "&body=" + message+" from "+email);
-
-                                    }
-                                </script>
-                        </form>
-                        <a class="btn btn-success button" style="font-size: 30px; margin-top:10px;"
-                            data-pd-popup-open="popupNew" onclick="sendMail()" href="#">Contact Me</a>
-<!-- 
-                        <div class="popup" data-pd-popup="popupNew">
-                            <div class="popup-inner">
-                               
+        <div class="tm-row">
+            <div class="tm-col-left text-center">
+                <ul class="tm-bg-controls-wrapper">
+                    <li class="tm-bg-control active" data-id="0"></li>
+                    <li class="tm-bg-control" data-id="1"></li>
+                    <li class="tm-bg-control" data-id="2"></li>
+                </ul>
+            </div>
+            <!-- <div class="tm-col-right tm-col-footer">
+                    <footer class="tm-site-footer text-right">
+                        <p class="mb-0">Copyright 2020 Diagoona Co. 
                         
-                                </span>
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
+                        | Design: <a rel="nofollow" href="https://templatemo.com" class="tm-text-link">TemplateMo</a></p>
+                    </footer>
+                </div>   -->
         </div>
-    </section>
 
-
-    <footer class="ftco-footer ftco-section" style="margin-top: 200px">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <p>
-                    Copyright &copy;
-                    <script data-cfasync="false"
-                        src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-                    <script type="562d7d7a1224985956e06f4a-text/javascript">
-                            document.write(new Date().getFullYear());
-                        </script>
-                    All rights reserved | This template is made with <i class="icon-heart color-danger"
-                        aria-hidden="true" ;"></i> by<span style="font-weight: bold; color: white;"> SIVANI B
-                        RUPAVAT</span>
-                </p>
-            </div>
+        <!-- Diagonal background design -->
+        <div class="tm-bg">
+            <div class="tm-bg-left"></div>
+            <div class="tm-bg-right"></div>
         </div>
-        </div>
-    </footer>
-
-
 
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/jquery.min.js" type="562d7d7a1224985956e06f4a-text/javascript"></script>
-    <script src="js/jquery-migrate-3.0.1.min.js" type="562d7d7a1224985956e06f4a-text/javascript"></script>
-    <script src="js/popper.min.js" type="562d7d7a1224985956e06f4a-text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="562d7d7a1224985956e06f4a-text/javascript"></script>
-
 
 </body>
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCRNh7xjmW7Dy6FOo5nv-RZZtO5iJooS30",
+        authDomain: "myblog-4bae9.firebaseapp.com",
+        databaseURL: "https://myblog-4bae9.firebaseio.com",
+        projectId: "myblog-4bae9",
+        storageBucket: "myblog-4bae9.appspot.com",
+        messagingSenderId: "488154727933",
+        appId: "1:488154727933:web:db049d3649a8144f460594",
+        measurementId: "G-R05ZYRKVLQ"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+</script>
 
 </html>
